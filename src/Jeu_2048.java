@@ -1,4 +1,4 @@
-
+/*lol*/
 public class Jeu_2048 {
 	
 	
