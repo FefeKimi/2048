@@ -1,6 +1,10 @@
-/*lol*/
-public class Jeu_2048 {
+/*jeu*/
+package pack;
+public class Jeu{
 	
+	public Jeu(){
+		
+	}
 	
 	public void Haut(){
 		
@@ -15,10 +19,10 @@ public class Jeu_2048 {
 		
 	}
 	public boolean Gagne(){
-		
+		return false;
 	}
 	public boolean Perdu(){
-		
+		return false;
 	}
 	public void reset(){
 		
