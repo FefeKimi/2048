@@ -1,7 +1,8 @@
 
 public class Jeu_2048 {
 	
-	private void Haut(){
+	
+	public void Haut(){
 		
 	}
 	public void Bas(){
@@ -25,7 +26,7 @@ public class Jeu_2048 {
 	public void estVide(){
 		
 	}
-	public int get(i,j){
+	public int get(int i,int j){
 		return 0;
 	}
 
