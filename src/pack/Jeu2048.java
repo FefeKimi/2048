@@ -82,28 +82,28 @@ public class Jeu2048{
 	public void haut(){
 		for (int i = 0; i < grille.size(); i++) {
 
-//			for (int j = grille.size()-2; j >=0 ; j--) {
-//
-//			//si la case n'est pas nulle alors on deplace si possible la valeur à droite
-//				if( !grille.get(i).get(j).estVide() && grille.get(i).get(j+1).estVide() )
-//				{
-//					int col=j+1;
-//					
-//					int val=grille.get(i).get(j).getVal();
-//					while(grille.get(i).get(col).estVide() && col<taille-1){		
-//						col++;
-//					}
-//					if(grille.get(i).get(taille-1).estVide()){
-//						grille.get(i).get(col).setVal(val);
-//						grille.get(i).get(j).setVal(0);
-//					}
-//					else{
-//						grille.get(i).get(col-1).setVal(val);
-//						grille.get(i).get(j).setVal(0);
-//					}
-//					
-//			
-//				}
+			for (int j = grille.size()-2; j >=0 ; j--) {
+
+			//si la case n'est pas nulle alors on deplace si possible la valeur à droite
+				if( !grille.get(i).get(j).estVide() && grille.get(i).get(j+1).estVide() )
+				{
+					int col=j+1;
+					
+					int val=grille.get(i).get(j).getVal();
+					while(grille.get(i).get(col).estVide() && col<taille-1){		
+						col++;
+					}
+					if(grille.get(i).get(taille-1).estVide()){
+						grille.get(i).get(col).setVal(val);
+						grille.get(i).get(j).setVal(0);
+					}
+					else{
+						grille.get(i).get(col-1).setVal(val);
+						grille.get(i).get(j).setVal(0);
+					}
+					
+			
+				}
 				fusionner(i,j);
 			}
 		}
@@ -235,7 +235,11 @@ public class Jeu2048{
 	
 	/*recommencer*/
 	public void reset(){
-		
+		for(int i = 0 ; i < grille.size() ; i++){
+			for (int j = 0; j < grille.size() ; j++) {
+				grille.get(i).get(j).setVal(0);
+			}
+		}
 	}
 	
 	public int get(int i,int j){
