@@ -92,18 +92,28 @@ public class Jeu2048{
 	public void droite(){
 		//On parcourt ArrayList, pas la peine de parcourir jusqu'à la case la plus à droite 	
 				for (int i = 0; i < grille.size(); i++) {
+
 					for (int j = grille.size()-2; j >=0 ; j--) {
+
 					//si la case n'est pas nulle alors on deplace si possible la valeur à droite
 						if( !grille.get(i).get(j).estVide() && grille.get(i).get(j+1).estVide() )
 						{
 							int col=j+1;
+							
 							int val=grille.get(i).get(j).getVal();
-							while(grille.get(i).get(col).estVide()&&col<taille-1){
+							while(grille.get(i).get(col).estVide() && col<taille-1){		
 								col++;
 							}
+							if(grille.get(i).get(taille-1).estVide()){
+								grille.get(i).get(col).setVal(val);
+								grille.get(i).get(j).setVal(0);
+							}
+							else{
+								grille.get(i).get(col-1).setVal(val);
+								grille.get(i).get(j).setVal(0);
+							}
 							
-							grille.get(i).get(col).setVal(val);
-							grille.get(i).get(j).setVal(0);
+					
 						}
 					}
 				}
