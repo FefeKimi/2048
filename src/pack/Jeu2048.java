@@ -49,44 +49,34 @@ public class Jeu2048{
 		}
 		System.out.println("Fin du jeu.");
 	}
-	public void action(char car){
-		if(car=='z'){
-			this.haut();
-		}
-		else if(car=='s'){
-			this.bas();
-		}
-		else{
-			this.haut();
+
+	public void action(char car) {
+		switch(car){
+			case 'z':{
+				this.haut();
+				break;
+			}
+			case 's':{
+				this.bas();
+				
+			}
+			break;
+			case 'q': {
+				this.gauche();
+				
+			}
+			break;
+			case 'd':{
+				this.droite();
+				
+			}
+			break;
+			default:{
+				
+			}
+			break;
 		}
 	}
-//	public void action(char car) {
-//		switch(car){
-//			case 'z':{
-//				this.haut();
-//				break;
-//			}
-//			case 's':{
-//				this.bas();
-//				
-//			}
-//			break;
-//			case 'q': {
-//				this.gauche();
-//				
-//			}
-//			break;
-//			case 'd':{
-//				this.droite();
-//				
-//			}
-//			break;
-//			default:{
-//				
-//			}
-//			break;
-//		}
-//	}
 
 	/*deplacement*/
 	public void haut(){
