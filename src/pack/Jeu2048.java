@@ -115,6 +115,7 @@ public class Jeu2048{
 							
 					
 						}
+						fusionner(i,j);
 					}
 				}
 				ajouterSiCaseVide();
@@ -166,6 +167,15 @@ public class Jeu2048{
 		}
 		return true;
 		
+	}
+	
+	public void fusionner(int lign, int col){
+		int val= grille.get(lign).get(col).getVal();
+		int valSuiv= grille.get(lign).get(col).getVal();
+		if(val == valSuiv){
+			valSuiv = val+valSuiv;
+			val=0;
+		}
 	}
 	
 	/*recommencer*/
