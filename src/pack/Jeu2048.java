@@ -91,6 +91,7 @@ public class Jeu2048{
 	/*deplacement*/
 	public void haut(){
 		ajouterSiCaseVide();
+		
 	}
 	public void bas(){
 		ajouterSiCaseVide();
@@ -100,6 +101,27 @@ public class Jeu2048{
 	}
 	public void droite(){
 		ajouterSiCaseVide();
+		//On parcourt ArrayList, pas la peine de parcourir jusqu'à la case la plus à droite 	
+				for (int i = 0; i < grille.size(); i++) {
+					for (int j = grille.size()-1; j >0 ; j--) {
+					//si la case n'est pas nulle alors on deplace si possible la valeur à droite
+						if( !grille.get(i).get(j).estVide())
+						{
+							int comp = j+1;
+							int tempo = comp;
+							int add = grille.get(i).get(j).getVal();
+							//on regarde combien il y a de cases vides sur la droite 
+							while ( grille.get(i).get(tempo).estVide() || tempo< 3  ) {
+								tempo++;
+							}	
+							//s'il y en a alors on deplace la valeur le plus à droite
+							if(comp != tempo){
+								grille.get(i).get(tempo).setVal(add);
+								grille.get(i).get(j).setVal(0);
+							}
+						}
+					}
+				}
 	}
 	
 	public void ajouterSiCaseVide(){
