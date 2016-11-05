@@ -21,12 +21,14 @@ public class Jeu2048{
 			}
 			this.grille.add(l);
 		}
+		ajouterSiCaseVide();
+		ajouterSiCaseVide();
 		
 	}
 	
 	void afficheGrille(){
-		for(int i=0;i<grille.size();i++){
-			for(int j=0;j<grille.size();j++){
+		for(int i=0;i<taille;i++){
+			for(int j=0;j<taille;j++){
 				System.out.print(grille.get(i).get(j).getVal()+"\t");
 			}
 			System.out.println("");
@@ -76,101 +78,167 @@ public class Jeu2048{
 			}
 			break;
 		}
+		if(this.gagne()==true){
+			System.out.println("Vous avez gagné mais vous pouvez continuer!");
+		}
 	}
 
 	/*deplacement*/
 	public void haut(){
-		for (int i = 0; i < grille.size(); i++) {
+		for (int j = 0; j < taille; j++) {
 
-			for (int j = grille.size()-2; j >=0 ; j--) {
-
-			//si la case n'est pas nulle alors on deplace si possible la valeur à droite
-				if( !grille.get(i).get(j).estVide() && grille.get(i).get(j+1).estVide() )
-				{
-					int col=j+1;
-					
-					int val=grille.get(i).get(j).getVal();
-					while(grille.get(i).get(col).estVide() && col<taille-1){		
-						col++;
+			for (int i = 0; i <taille ; i++) {
+				
+					for(int k=0; k<j; k++){
+						if(grille.get(k).get(j).getVal()==0){
+							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
+							grille.get(i).get(j).setVal(0);
+							break;
+						}
 					}
-					if(grille.get(i).get(taille-1).estVide()){
-						grille.get(i).get(col).setVal(val);
-						grille.get(i).get(j).setVal(0);
-					}
-					else{
-						grille.get(i).get(col-1).setVal(val);
-						grille.get(i).get(j).setVal(0);
-					}
-					
-			
-				}
-				fusionner(i,j);
 			}
 		}
-		ajouterSiCaseVide();
+		for (int j = 0; j < taille; j++) {
+
+			for (int i = 1; i <taille ; i++) {
+				if(grille.get(i-1).get(j).getVal()==grille.get(i).get(j).getVal()){
+					grille.get(i-1).get(j).setVal(grille.get(i-1).get(j).getVal()*2);
+					grille.get(i).get(j).setVal(0);
+				}
+			}
+		}
+		for (int j = 0; j < taille; j++) {
+
+			for (int i = 0; i <taille ; i++) {
+				
+					for(int k=0; k<j; k++){
+						if(grille.get(k).get(j).getVal()==0){
+							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
+							grille.get(i).get(j).setVal(0);
+							break;
+						}
+					}
+			}
+		}ajouterSiCaseVide();
 		
 	}
+	
 	public void bas(){
+		for (int j = 0; j < taille; j++) {
+
+			for (int i = 0; i <taille ; i++) {
+				
+					for(int k=taille-1; k>i; k--){
+						if(grille.get(k).get(j).getVal()==0){
+							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
+							grille.get(i).get(j).setVal(0);
+							break;
+						}
+					}
+			}
+			
+		}
+		for (int j = 0; j < taille; j++) {
+
+			for (int i = taille-2; i >=0 ; i--) {
+				if(grille.get(i).get(j).getVal()==grille.get(i+1).get(j).getVal()){
+					grille.get(i+1).get(j).setVal(grille.get(i).get(j).getVal()*2);
+					grille.get(i).get(j).setVal(0);
+				}
+			}
+		}
+		for (int j = 0; j < taille; j++) {
+
+			for (int i = 0; i <taille ; i++) {
+				
+					for(int k=taille-1; k>i; k--){
+						if(grille.get(k).get(j).getVal()==0){
+							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
+							grille.get(i).get(j).setVal(0);
+							break;
+						}
+					}
+			}
+			
+		}
 		ajouterSiCaseVide();
 	}
+	
 	public void gauche(){
-		//On parcourt ArrayList, on saute la case la plus à gauche on peut pas la deplacer	
-		for (int i = 0; i < grille.size(); i++) {
+		for (int i = 0; i < taille; i++) {
 
-			for (int j = 1; j <=grille.size()-1 ; j++) {
+			for (int j = 0; j <taille ; j++) {
+				
+					for(int k=0; k<j; k++){
+						if(grille.get(i).get(k).getVal()==0){
+							grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
+							grille.get(i).get(j).setVal(0);
+							break;
+						}
+					}
+			}
+		}
+		for (int i = 0; i < taille; i++) {
 
-			//si la case n'est pas nulle alors on deplace si possible la valeur à gauche
-				if( !grille.get(i).get(j).estVide() && grille.get(i).get(j-1).estVide() )
-				{
-					int col=j-1;
-					
-					int val=grille.get(i).get(j).getVal();
-					while(grille.get(i).get(col).estVide() && col>0){		
-						col--;
-					}
-					if(grille.get(i).get(0).estVide()){
-						grille.get(i).get(col).setVal(val);
-						grille.get(i).get(j).setVal(0);
-					}
-					else{
-						grille.get(i).get(col+1).setVal(val);
-						grille.get(i).get(j).setVal(0);
-					}
-					
-			
+			for (int j = 1; j <taille ; j++) {
+				if(grille.get(i).get(j-1).getVal()==grille.get(i).get(j).getVal()){
+					grille.get(i).get(j-1).setVal(grille.get(i).get(j-1).getVal()*2);
+					grille.get(i).get(j).setVal(0);
 				}
-				fusionner(i,j);
+			}
+		}
+		for (int i = 0; i < taille; i++) {
+
+			for (int j = 0; j <taille ; j++) {
+				
+					for(int k=0; k<j; k++){
+						if(grille.get(i).get(k).getVal()==0){
+							grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
+							grille.get(i).get(j).setVal(0);
+							break;
+						}
+					}
 			}
 		}
 		ajouterSiCaseVide();
 	}
+	
+	
 	public void droite(){
 		//On parcourt ArrayList, pas la peine de parcourir jusqu'à la case la plus à droite 	
-				for (int i = 0; i < grille.size(); i++) {
+				for (int i = 0; i < taille; i++) {
 
-					for (int j = grille.size()-2; j >=0 ; j--) {
+					for (int j = taille-1; j >=0 ; j--) {
+						
+							for(int k= taille-1; k>j; k--){
+								if(grille.get(i).get(k).getVal()==0){
+									grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
+									grille.get(i).get(j).setVal(0);
+									break;
+								}
+							}
+					}
+				}
+				for (int i = 0; i < taille; i++) {
 
-					//si la case n'est pas nulle alors on deplace si possible la valeur à droite
-						if( !grille.get(i).get(j).estVide() && grille.get(i).get(j+1).estVide() )
-						{
-							int col=j+1;
-							
-							int val=grille.get(i).get(j).getVal();
-							while(grille.get(i).get(col).estVide() && col<taille-1){		
-								col++;
-							}
-							if(grille.get(i).get(taille-1).estVide()){
-								grille.get(i).get(col).setVal(val);
-								grille.get(i).get(j).setVal(0);
-							}
-							else{
-								grille.get(i).get(col-1).setVal(val);
-								grille.get(i).get(j).setVal(0);
-							}
-							
-					
+					for (int j = taille-2; j >=0 ; j--) {
+						if(grille.get(i).get(j).getVal()==grille.get(i).get(j+1).getVal()){
+							grille.get(i).get(j+1).setVal(grille.get(i).get(j).getVal()*2);
+							grille.get(i).get(j).setVal(0);
 						}
-						fusionner(i,j);
+					}
+				}
+				for (int i = 0; i < taille; i++) {
+
+					for (int j = taille-2; j >=0 ; j--) {
+						
+							for(int k= taille-1; k>j; k--){
+								if(grille.get(i).get(k).getVal()==0){
+									grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
+									grille.get(i).get(j).setVal(0);
+									break;
+								}
+							}
 					}
 				}
 				ajouterSiCaseVide();
@@ -204,9 +272,9 @@ public class Jeu2048{
 	
 	/*resultat*/
 	public boolean gagne(){
-		for(int i=0;i<grille.size();i++){
-			for(int j=0;j<grille.size();j++){
-				if(grille.get(i).get(j).getVal()==2048)
+		for(int i=0;i<taille;i++){
+			for(int j=0;j<taille;j++){
+				if(grille.get(i).get(j).getVal()==32)
 					return true;
 			}
 		}
@@ -214,8 +282,8 @@ public class Jeu2048{
 	}
 	
 	public boolean perdu(){
-		for(int i=0;i<grille.size();i++){
-			for(int j=0;j<grille.size();j++){
+		for(int i=0;i<taille;i++){
+			for(int j=0;j<taille;j++){
 				if(grille.get(i).get(j).getVal()==0)
 					return false;
 			}
@@ -235,11 +303,7 @@ public class Jeu2048{
 	
 	/*recommencer*/
 	public void reset(){
-		for(int i = 0 ; i < grille.size() ; i++){
-			for (int j = 0; j < grille.size() ; j++) {
-				grille.get(i).get(j).setVal(0);
-			}
-		}
+		
 	}
 	
 	public int get(int i,int j){
