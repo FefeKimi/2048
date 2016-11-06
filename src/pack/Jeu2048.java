@@ -11,10 +11,12 @@ public class Jeu2048{
 	
 	private ArrayList<ArrayList<Case>> grille;
 	private int taille;
+	private boolean Premier2048;
 	
 	/*Condtructeur*/
-	Jeu2048(int t){
+	Jeu2048(int t, boolean First2048){
 		this.taille = t;
+		this.Premier2048 = First2048;
 		grille = new ArrayList<ArrayList<Case>>();
 		for(int i=0;i<t;i++){
 			ArrayList l = new ArrayList<Case>();
@@ -40,7 +42,7 @@ public class Jeu2048{
 	
 	/*Execution du jeu*/
 	public static void main(String[]args){
-		Jeu2048 jeu = new Jeu2048(4);
+		Jeu2048 jeu = new Jeu2048(4,true);
 		jeu.afficheGrille();
 		while(jeu.perdu()==false){
 			char c= 'p';
@@ -381,8 +383,10 @@ public class Jeu2048{
 	public boolean gagne(){
 		for(int i=0;i<taille;i++){
 			for(int j=0;j<taille;j++){
-				if(grille.get(i).get(j).getVal()==2048)
+				if(grille.get(i).get(j).getVal()== 8 && Premier2048){
+					Premier2048=false;
 					return true;
+				}
 			}
 		}
 		return false;
@@ -390,8 +394,8 @@ public class Jeu2048{
 	
 	public boolean perdu(){
 		//on vérifie s'il y a une case vide 
-		for(int j=0;j<taille;j++){
-			for(int i=0;i<taille-1;i++){
+		for(int i=0;i<taille;i++){
+			for(int j=0;j<taille;i++){
 				if(grille.get(i).get(j).getVal()==0)
 					return false;
 			}
