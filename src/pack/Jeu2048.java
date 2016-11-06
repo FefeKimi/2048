@@ -85,6 +85,18 @@ public class Jeu2048{
 
 	/*deplacement*/
 	public void haut(){
+		boolean egal=true;
+		int copie[][]= new int[taille][taille];
+		
+		
+		for(int i=0;i<taille;i++){
+			for(int j=0;j<taille;j++){
+				copie[i][j]= grille.get(i).get(j).getVal();
+				
+			}
+			
+		}
+		System.out.println(egal);
 		for (int j = 0; j < taille; j++) {
 
 			for (int i = 0; i <taille ; i++) {
@@ -119,11 +131,35 @@ public class Jeu2048{
 						}
 					}
 			}
-		}ajouterSiCaseVide();
+		}
+		for (int i = 0; i < taille; i++) {
+
+			for (int j = taille-1; j >=0 ; j--) {
+				if(grille.get(i).get(j).getVal()!=copie[i][j]){
+					egal=false;
+				}
+			}
+			
+		}
+		System.out.println(egal);
+		if(!egal){
+			ajouterSiCaseVide();
+		}
 		
 	}
 	
 	public void bas(){
+		boolean egal=true;
+		int copie[][]= new int[taille][taille];
+		
+		for(int i=0;i<taille;i++){
+			for(int j=0;j<taille;j++){
+				copie[i][j]= grille.get(i).get(j).getVal();
+				
+			}
+			
+		}
+		System.out.println(egal);
 		for (int j = 0; j < taille; j++) {
 
 			for (int i = 0; i <taille ; i++) {
@@ -161,10 +197,33 @@ public class Jeu2048{
 			}
 			
 		}
-		ajouterSiCaseVide();
+		for (int i = 0; i < taille; i++) {
+
+			for (int j = taille-1; j >=0 ; j--) {
+				if(grille.get(i).get(j).getVal()!=copie[i][j]){
+					egal=false;
+				}
+			}
+			
+		}
+		System.out.println(egal);
+		if(!egal){
+			ajouterSiCaseVide();
+		}
 	}
 	
 	public void gauche(){
+		boolean egal=true;
+		int copie[][]= new int[taille][taille];
+		
+		for(int i=0;i<taille;i++){
+			for(int j=0;j<taille;j++){
+				copie[i][j]= grille.get(i).get(j).getVal();
+				
+			}
+			
+		}
+		System.out.println(egal);
 		for (int i = 0; i < taille; i++) {
 
 			for (int j = 0; j <taille ; j++) {
@@ -200,21 +259,33 @@ public class Jeu2048{
 					}
 			}
 		}
-		ajouterSiCaseVide();
+		for (int i = 0; i < taille; i++) {
+
+			for (int j = taille-1; j >=0 ; j--) {
+				if(grille.get(i).get(j).getVal()!=copie[i][j]){
+					egal=false;
+				}
+			}
+			
+		}
+		System.out.println(egal);
+		if(!egal){
+			ajouterSiCaseVide();
+		}
 	}
 	
 	
 	public void droite(){
 		boolean egal=true;
 		int copie[][]= new int[taille][taille];
-		System.out.println("Copie tableau");
+		
 		
 		for(int i=0;i<taille;i++){
 			for(int j=0;j<taille;j++){
 				copie[i][j]= grille.get(i).get(j).getVal();
-				System.out.print(copie[i][j]+ "\t");
+				
 			}
-			System.out.println("");
+			
 		}
 		System.out.println(egal);
 		
