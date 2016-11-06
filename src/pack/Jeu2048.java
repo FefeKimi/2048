@@ -96,7 +96,7 @@ public class Jeu2048{
 			}
 			
 		}
-		System.out.println(egal);
+	
 		for (int j = 0; j < taille; j++) {
 
 			for (int i = 0; i <taille ; i++) {
@@ -159,7 +159,7 @@ public class Jeu2048{
 			}
 			
 		}
-		System.out.println(egal);
+	
 		for (int j = 0; j < taille; j++) {
 
 			for (int i = 0; i <taille ; i++) {
@@ -223,7 +223,6 @@ public class Jeu2048{
 			}
 			
 		}
-		System.out.println(egal);
 		for (int i = 0; i < taille; i++) {
 
 			for (int j = 0; j <taille ; j++) {
@@ -287,7 +286,7 @@ public class Jeu2048{
 			}
 			
 		}
-		System.out.println(egal);
+		
 		
 		//On parcourt ArrayList, pas la peine de parcourir jusqu'à la case la plus à droite 	
 				for (int i = 0; i < taille; i++) {
