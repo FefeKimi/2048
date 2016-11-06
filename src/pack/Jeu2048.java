@@ -40,23 +40,6 @@ public class Jeu2048{
 		}
 	}
 	
-	/*Execution du jeu*/
-	public static void main(String[]args){
-		Jeu2048 jeu = new Jeu2048(4,true);
-		jeu.afficheGrille();
-		while(jeu.perdu()==false){
-			char c= 'p';
-			try{
-				InputStreamReader saisie = new InputStreamReader(System.in);
-				char a =  (char) saisie.read();
-				jeu.action(a);
-				jeu.afficheGrille();
-			}catch(Exception e){
-				System.out.println("Saisie incorrecte ! Recommencez : ");
-			}
-		}
-		System.out.println("Fin du jeu.");
-	}
 
 	/*déplacement des cases*/
 	public void action(char car) {
@@ -174,7 +157,7 @@ public class Jeu2048{
 	
 		//recherche la case vide située le plus pas possible
 		for (int j = 0; j < taille; j++) {
-
+			
 			for (int i = 0; i <taille ; i++) {
 				
 					for(int k=taille-1; k>i; k--){
@@ -202,7 +185,7 @@ public class Jeu2048{
 
 			for (int i = 0; i <taille ; i++) {
 				
-					for(int k=taille-2; k>i; k--){
+					for(int k=taille-1; k>i; k--){
 						if(grille.get(k).get(j).getVal()==0){
 							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
 							grille.get(i).get(j).setVal(0);
@@ -383,7 +366,7 @@ public class Jeu2048{
 	public boolean gagne(){
 		for(int i=0;i<taille;i++){
 			for(int j=0;j<taille;j++){
-				if(grille.get(i).get(j).getVal()== 8 && Premier2048){
+				if(grille.get(i).get(j).getVal()== 2048 && Premier2048){
 					Premier2048=false;
 					return true;
 				}
@@ -395,7 +378,7 @@ public class Jeu2048{
 	public boolean perdu(){
 		//on vérifie s'il y a une case vide 
 		for(int i=0;i<taille;i++){
-			for(int j=0;j<taille;i++){
+			for(int j=0;j<taille;j++){
 				if(grille.get(i).get(j).getVal()==0)
 					return false;
 			}
