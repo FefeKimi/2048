@@ -96,7 +96,7 @@ public class Jeu2048{
 			}
 			
 		}
-		System.out.println(egal);
+
 		for (int j = 0; j < taille; j++) {
 
 			for (int i = 0; i <taille ; i++) {
@@ -123,7 +123,7 @@ public class Jeu2048{
 
 			for (int i = 0; i <taille ; i++) {
 				
-					for(int k=0; k<j; k++){
+					for(int k=0; k<i; k++){
 						if(grille.get(k).get(j).getVal()==0){
 							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
 							grille.get(i).get(j).setVal(0);
@@ -141,7 +141,6 @@ public class Jeu2048{
 			}
 			
 		}
-		System.out.println(egal);
 		if(!egal){
 			ajouterSiCaseVide();
 		}
@@ -159,7 +158,6 @@ public class Jeu2048{
 			}
 			
 		}
-		System.out.println(egal);
 		for (int j = 0; j < taille; j++) {
 
 			for (int i = 0; i <taille ; i++) {
@@ -206,7 +204,6 @@ public class Jeu2048{
 			}
 			
 		}
-		System.out.println(egal);
 		if(!egal){
 			ajouterSiCaseVide();
 		}
@@ -223,7 +220,6 @@ public class Jeu2048{
 			}
 			
 		}
-		System.out.println(egal);
 		for (int i = 0; i < taille; i++) {
 
 			for (int j = 0; j <taille ; j++) {
@@ -268,7 +264,7 @@ public class Jeu2048{
 			}
 			
 		}
-		System.out.println(egal);
+	
 		if(!egal){
 			ajouterSiCaseVide();
 		}
@@ -287,7 +283,7 @@ public class Jeu2048{
 			}
 			
 		}
-		System.out.println(egal);
+	
 		
 		//On parcourt ArrayList, pas la peine de parcourir jusqu'à la case la plus à droite 	
 				for (int i = 0; i < taille; i++) {
@@ -336,7 +332,7 @@ public class Jeu2048{
 					}
 					
 				}
-				System.out.println(egal);
+			
 				if(!egal){
 					ajouterSiCaseVide();
 				}
