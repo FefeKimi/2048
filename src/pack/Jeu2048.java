@@ -404,7 +404,18 @@ public class Jeu2048{
 	
 	
 	/*recommencer*/
-	public void reset(){
+	public void reset(boolean First2048){
+		
+			this.Premier2048=First2048;
+			for(int i=0;i<taille;i++){
+				for(int j=0;j<taille;j++){
+					grille.get(i).get(j).setVal(0);
+					
+				}
+			}
+			ajouterSiCaseVide();
+			ajouterSiCaseVide();
+			
 		
 	}
 
