@@ -101,7 +101,7 @@ public class Jeu2048{
 
 			for (int i = 0; i <taille ; i++) {
 				
-					for(int k=0; k<j; k++){
+					for(int k=0; k<i; k++){
 						if(grille.get(k).get(j).getVal()==0){
 							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
 							grille.get(i).get(j).setVal(0);
@@ -383,12 +383,25 @@ public class Jeu2048{
 	
 	public boolean perdu(){
 		/*haut*/
-		for(int i=0;i<taille;i++){
-			for(int j=0;j<taille;j++){
+		for(int j=0;j<taille;j++){
+			for(int i=0;i<taille-1;i++){
 				if(grille.get(i).get(j).getVal()==0)
 					return false;
 			}
 		}
+		for(int i=0;i<taille;i++){
+			for(int j=0;j<taille-1;j++){
+				if(grille.get(i).get(j).getVal()==grille.get(i).get(j+1).getVal())
+					return false;
+			}
+		}
+		for(int j=0;j<taille;j++){
+			for(int i=0;i<taille-1;i++){
+				if(grille.get(i).get(j).getVal()==grille.get(i+1).get(j).getVal())
+					return false;
+			}
+		}
+		
 		return true;
 		
 	}
