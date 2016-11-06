@@ -158,7 +158,7 @@ public class Jeu2048{
 		//recherche la case vide située le plus pas possible
 		for (int j = 0; j < taille; j++) {
 			
-			for (int i = 0; i <taille ; i++) {
+			for (int i = taille-1; i >= 0 ; i--) {
 				
 					for(int k=taille-1; k>i; k--){
 						if(grille.get(k).get(j).getVal()==0){
@@ -183,7 +183,7 @@ public class Jeu2048{
 		//recherche la case vide située le plus pas possible
 		for (int j = 0; j < taille; j++) {
 
-			for (int i = 0; i <taille ; i++) {
+			for (int i = taille-1; i >=0 ; i--) {
 				
 					for(int k=taille-1; k>i; k--){
 						if(grille.get(k).get(j).getVal()==0){
