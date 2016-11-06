@@ -128,7 +128,7 @@ public class Jeu2048{
 
 			for (int i = 0; i <taille ; i++) {
 				
-					for(int k=taille-1; k>i; k--){
+					for(int k=taille-2; k>i; k--){
 						if(grille.get(k).get(j).getVal()==0){
 							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
 							grille.get(i).get(j).setVal(0);
@@ -151,7 +151,7 @@ public class Jeu2048{
 
 			for (int i = 0; i <taille ; i++) {
 				
-					for(int k=taille-1; k>i; k--){
+					for(int k=taille-2; k>i; k--){
 						if(grille.get(k).get(j).getVal()==0){
 							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
 							grille.get(i).get(j).setVal(0);
@@ -205,12 +205,21 @@ public class Jeu2048{
 	
 	
 	public void droite(){
+		boolean egal=true;
+		int copie[][]= new int[taille][taille];
+		for(int i=0;i<taille-1;i++){
+			for(int j=0;j<taille;j++){
+				copie[i][j]= grille.get(i).get(j).getVal();
+			}
+		}
+		
+		
 		//On parcourt ArrayList, pas la peine de parcourir jusqu'à la case la plus à droite 	
 				for (int i = 0; i < taille; i++) {
 
-					for (int j = taille-1; j >=0 ; j--) {
+					for (int j = taille-2; j >=0 ; j--) {
 						
-							for(int k= taille-1; k>j; k--){
+							for(int k= taille-2; k>j; k--){
 								if(grille.get(i).get(k).getVal()==0){
 									grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
 									grille.get(i).get(j).setVal(0);
@@ -219,6 +228,7 @@ public class Jeu2048{
 							}
 					}
 				}
+				
 				for (int i = 0; i < taille; i++) {
 
 					for (int j = taille-2; j >=0 ; j--) {
@@ -241,8 +251,22 @@ public class Jeu2048{
 							}
 					}
 				}
-				ajouterSiCaseVide();
+				
+				for (int i = 0; i < taille; i++) {
+
+					for (int j = taille-1; j >=0 ; j--) {
+						if(grille.get(i).get(j).getVal()!=copie[i][j]){
+							egal=false;
+						}
+					}
+					
+				}
+				if(egal==false){
+					ajouterSiCaseVide();
+				}
+					
 			}
+			
 	
 				
 	
@@ -274,7 +298,7 @@ public class Jeu2048{
 	public boolean gagne(){
 		for(int i=0;i<taille;i++){
 			for(int j=0;j<taille;j++){
-				if(grille.get(i).get(j).getVal()==32)
+				if(grille.get(i).get(j).getVal()==2048)
 					return true;
 			}
 		}
@@ -282,6 +306,7 @@ public class Jeu2048{
 	}
 	
 	public boolean perdu(){
+		/*haut*/
 		for(int i=0;i<taille;i++){
 			for(int j=0;j<taille;j++){
 				if(grille.get(i).get(j).getVal()==0)
