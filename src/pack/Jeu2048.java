@@ -36,7 +36,6 @@ public class Jeu2048{
 	}
 	
 	public static void main(String[]args){
-		int nb2048;
 		Jeu2048 jeu = new Jeu2048(4);
 		jeu.afficheGrille();
 		while(jeu.perdu()==false){
