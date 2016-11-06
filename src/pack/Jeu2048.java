@@ -8,9 +8,11 @@ import java.util.Random;
 
 
 public class Jeu2048{	
+	
 	private ArrayList<ArrayList<Case>> grille;
 	private int taille;
 	
+	/*Condtructeur*/
 	Jeu2048(int t){
 		this.taille = t;
 		grille = new ArrayList<ArrayList<Case>>();
@@ -26,6 +28,7 @@ public class Jeu2048{
 		
 	}
 	
+	/*Affichage de la Grille*/
 	void afficheGrille(){
 		for(int i=0;i<taille;i++){
 			for(int j=0;j<taille;j++){
@@ -35,6 +38,7 @@ public class Jeu2048{
 		}
 	}
 	
+	/*Execution du jeu*/
 	public static void main(String[]args){
 		Jeu2048 jeu = new Jeu2048(4);
 		jeu.afficheGrille();
@@ -52,6 +56,7 @@ public class Jeu2048{
 		System.out.println("Fin du jeu.");
 	}
 
+	/*déplacement des cases*/
 	public void action(char car) {
 		switch(car){
 			case 'z':{
@@ -83,12 +88,12 @@ public class Jeu2048{
 		}
 	}
 
-	/*deplacement*/
+	/*deplacement haut/bas/gauche/droite*/
 	public void haut(){
+		
+		//Tableau de comparaison
 		boolean egal=true;
 		int copie[][]= new int[taille][taille];
-		
-		
 		for(int i=0;i<taille;i++){
 			for(int j=0;j<taille;j++){
 				copie[i][j]= grille.get(i).get(j).getVal();
@@ -97,6 +102,7 @@ public class Jeu2048{
 			
 		}
 	
+		//recherche de la  case vide située le plus haut possible
 		for (int j = 0; j < taille; j++) {
 
 			for (int i = 0; i <taille ; i++) {
@@ -110,6 +116,7 @@ public class Jeu2048{
 					}
 			}
 		}
+		//fusion des cases
 		for (int j = 0; j < taille; j++) {
 
 			for (int i = 1; i <taille ; i++) {
@@ -119,6 +126,7 @@ public class Jeu2048{
 				}
 			}
 		}
+		//recherche de la  case vide située le plus haut possible
 		for (int j = 0; j < taille; j++) {
 
 			for (int i = 0; i <taille ; i++) {
@@ -132,6 +140,8 @@ public class Jeu2048{
 					}
 			}
 		}
+		
+		//vérifie s'il y a eu un déplacement des cases
 		for (int i = 0; i < taille; i++) {
 
 			for (int j = taille-1; j >=0 ; j--) {
@@ -149,9 +159,9 @@ public class Jeu2048{
 	}
 	
 	public void bas(){
+		//Tableau de comparaison
 		boolean egal=true;
 		int copie[][]= new int[taille][taille];
-		
 		for(int i=0;i<taille;i++){
 			for(int j=0;j<taille;j++){
 				copie[i][j]= grille.get(i).get(j).getVal();
@@ -160,6 +170,7 @@ public class Jeu2048{
 			
 		}
 	
+		//recherche la case vide située le plus pas possible
 		for (int j = 0; j < taille; j++) {
 
 			for (int i = 0; i <taille ; i++) {
@@ -174,6 +185,7 @@ public class Jeu2048{
 			}
 			
 		}
+		//fusion des cases
 		for (int j = 0; j < taille; j++) {
 
 			for (int i = taille-2; i >=0 ; i--) {
@@ -183,6 +195,7 @@ public class Jeu2048{
 				}
 			}
 		}
+		//recherche la case vide située le plus pas possible
 		for (int j = 0; j < taille; j++) {
 
 			for (int i = 0; i <taille ; i++) {
@@ -197,6 +210,7 @@ public class Jeu2048{
 			}
 			
 		}
+		//vérifie s'il y a eu un déplacement des cases
 		for (int i = 0; i < taille; i++) {
 
 			for (int j = taille-1; j >=0 ; j--) {
@@ -213,6 +227,7 @@ public class Jeu2048{
 	}
 	
 	public void gauche(){
+		//Tableau de comparaison
 		boolean egal=true;
 		int copie[][]= new int[taille][taille];
 		
@@ -223,6 +238,8 @@ public class Jeu2048{
 			}
 			
 		}
+		
+		//cherche la case vide la plus à gauche possible
 		for (int i = 0; i < taille; i++) {
 
 			for (int j = 0; j <taille ; j++) {
@@ -236,6 +253,7 @@ public class Jeu2048{
 					}
 			}
 		}
+		//fusion des cases
 		for (int i = 0; i < taille; i++) {
 
 			for (int j = 1; j <taille ; j++) {
@@ -245,6 +263,7 @@ public class Jeu2048{
 				}
 			}
 		}
+		//cherche la case vide la plus à gauche possible
 		for (int i = 0; i < taille; i++) {
 
 			for (int j = 0; j <taille ; j++) {
@@ -258,6 +277,8 @@ public class Jeu2048{
 					}
 			}
 		}
+		
+		//vérifie s'il y a eu un déplacement des cases
 		for (int i = 0; i < taille; i++) {
 
 			for (int j = taille-1; j >=0 ; j--) {
@@ -275,10 +296,9 @@ public class Jeu2048{
 	
 	
 	public void droite(){
+		//Tableau de comparaison
 		boolean egal=true;
 		int copie[][]= new int[taille][taille];
-		
-		
 		for(int i=0;i<taille;i++){
 			for(int j=0;j<taille;j++){
 				copie[i][j]= grille.get(i).get(j).getVal();
@@ -287,68 +307,56 @@ public class Jeu2048{
 			
 		}
 		
-		
-		//On parcourt ArrayList, pas la peine de parcourir jusqu'à la case la plus à droite 	
-				for (int i = 0; i < taille; i++) {
-
-					for (int j = taille-2; j >=0 ; j--) {
-						
-							for(int k= taille-2; k>j; k--){
-								if(grille.get(i).get(k).getVal()==0){
-									grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
-									grille.get(i).get(j).setVal(0);
-									break;
-								}
-							}
+		//cherche la case vide située la plus à droite possible
+		for (int i = 0; i < taille; i++) {
+			for (int j = taille-2; j >=0 ; j--) {
+				for(int k= taille-2; k>j; k--){
+					if(grille.get(i).get(k).getVal()==0){
+						grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
+						grille.get(i).get(j).setVal(0);
+						break;
 					}
 				}
-				
-				for (int i = 0; i < taille; i++) {
-
-					for (int j = taille-2; j >=0 ; j--) {
-						if(grille.get(i).get(j).getVal()==grille.get(i).get(j+1).getVal()){
-							grille.get(i).get(j+1).setVal(grille.get(i).get(j).getVal()*2);
-							grille.get(i).get(j).setVal(0);
-						}
-					}
-				}
-				for (int i = 0; i < taille; i++) {
-
-					for (int j = taille-2; j >=0 ; j--) {
-						
-							for(int k= taille-1; k>j; k--){
-								if(grille.get(i).get(k).getVal()==0){
-									grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
-									grille.get(i).get(j).setVal(0);
-									break;
-								}
-							}
-					}
-				}
-				
-				for (int i = 0; i < taille; i++) {
-
-					for (int j = taille-1; j >=0 ; j--) {
-						if(grille.get(i).get(j).getVal()!=copie[i][j]){
-							egal=false;
-						}
-					}
-					
-				}
-				
-				if(!egal){
-					ajouterSiCaseVide();
-				}
-					
 			}
+		}
+		//fusion des cases	
+		for (int i = 0; i < taille; i++) {
+			for (int j = taille-2; j >=0 ; j--) {
+				if(grille.get(i).get(j).getVal()==grille.get(i).get(j+1).getVal()){
+					grille.get(i).get(j+1).setVal(grille.get(i).get(j).getVal()*2);
+					grille.get(i).get(j).setVal(0);
+				}
+			}
+		}
+		//cherche la case vide située la plus à droite possible
+		for (int i = 0; i < taille; i++) {
+			for (int j = taille-2; j >=0 ; j--) {
+				for(int k= taille-1; k>j; k--){
+					if(grille.get(i).get(k).getVal()==0){
+						grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
+						grille.get(i).get(j).setVal(0);
+						break;
+					}
+				}
+			}
+		}
+		
+		//vérifie s'il y a eu un déplacement des cases
+		for (int i = 0; i < taille; i++) {
+			for (int j = taille-1; j >=0 ; j--) {
+				if(grille.get(i).get(j).getVal()!=copie[i][j]){
+					egal=false;
+				}
+			}		
+		}
+		if(!egal){
+			ajouterSiCaseVide();
+		}		
+	}
 			
-	
-				
-	
-	
+	//ajout des cases aléatoirement
 	public void ajouterSiCaseVide(){
 		Random r = new Random();
-		
 		int col = Math.abs(r.nextInt()%4);
 		int li = Math.abs(r.nextInt()%4);
 		if(this.perdu() == false){
@@ -381,19 +389,21 @@ public class Jeu2048{
 	}
 	
 	public boolean perdu(){
-		/*haut*/
+		//on vérifie s'il y a une case vide 
 		for(int j=0;j<taille;j++){
 			for(int i=0;i<taille-1;i++){
 				if(grille.get(i).get(j).getVal()==0)
 					return false;
 			}
 		}
+		//on vérifie s'il y a fusion possible en ligne
 		for(int i=0;i<taille;i++){
 			for(int j=0;j<taille-1;j++){
 				if(grille.get(i).get(j).getVal()==grille.get(i).get(j+1).getVal())
 					return false;
 			}
 		}
+		//on vérifie s'il y a fusion possible en colonnes 
 		for(int j=0;j<taille;j++){
 			for(int i=0;i<taille-1;i++){
 				if(grille.get(i).get(j).getVal()==grille.get(i+1).get(j).getVal())
@@ -405,22 +415,10 @@ public class Jeu2048{
 		
 	}
 	
-	public void fusionner(int lign, int col){
-		int val= grille.get(lign).get(col).getVal();
-		int valSuiv= grille.get(lign).get(col).getVal();
-		if(val == valSuiv){
-			valSuiv = val+valSuiv;
-			val=0;
-		}
-	}
 	
 	/*recommencer*/
 	public void reset(){
 		
-	}
-	
-	public int get(int i,int j){
-		return 0;
 	}
 
 }
