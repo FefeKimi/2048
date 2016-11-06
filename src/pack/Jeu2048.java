@@ -128,7 +128,7 @@ public class Jeu2048{
 
 			for (int i = 0; i <taille ; i++) {
 				
-					for(int k=taille-2; k>i; k--){
+					for(int k=taille-1; k>i; k--){
 						if(grille.get(k).get(j).getVal()==0){
 							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
 							grille.get(i).get(j).setVal(0);
@@ -207,12 +207,16 @@ public class Jeu2048{
 	public void droite(){
 		boolean egal=true;
 		int copie[][]= new int[taille][taille];
-		for(int i=0;i<taille-1;i++){
+		System.out.println("Copie tableau");
+		
+		for(int i=0;i<taille;i++){
 			for(int j=0;j<taille;j++){
 				copie[i][j]= grille.get(i).get(j).getVal();
+				System.out.print(copie[i][j]+ "\t");
 			}
+			System.out.println("");
 		}
-		
+		System.out.println(egal);
 		
 		//On parcourt ArrayList, pas la peine de parcourir jusqu'à la case la plus à droite 	
 				for (int i = 0; i < taille; i++) {
@@ -261,7 +265,8 @@ public class Jeu2048{
 					}
 					
 				}
-				if(egal==false){
+				System.out.println(egal);
+				if(!egal){
 					ajouterSiCaseVide();
 				}
 					
