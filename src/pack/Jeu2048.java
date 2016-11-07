@@ -8,6 +8,11 @@ import java.util.Random;
 
 
 public class Jeu2048{	
+	public static final char up ='z';
+	public static final char down ='s';
+	public static final char right ='d';
+	public static final char left ='q';
+
 	
 	private ArrayList<ArrayList<Case>> grille;
 	private int taille;
@@ -19,7 +24,7 @@ public class Jeu2048{
 		this.Premier2048 = First2048;
 		grille = new ArrayList<ArrayList<Case>>();
 		for(int i=0;i<t;i++){
-			ArrayList l = new ArrayList<Case>();
+			ArrayList<Case> l = new ArrayList<Case>();
 			for(int j=0;j<t;j++){
 				l.add(new Case(0));
 			}
@@ -44,21 +49,21 @@ public class Jeu2048{
 	/*déplacement des cases*/
 	public void action(char car) {
 		switch(car){
-			case 'z':{
+			case up:{
 				this.haut();
 				break;
 			}
-			case 's':{
+			case down:{
 				this.bas();
 				
 			}
 			break;
-			case 'q': {
+			case left: {
 				this.gauche();
 				
 			}
 			break;
-			case 'd':{
+			case right:{
 				this.droite();
 				
 			}
