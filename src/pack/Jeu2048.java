@@ -423,5 +423,28 @@ public class Jeu2048{
 			
 		
 	}
+	public void rotation(){
+		int copie[][]= new int[taille][taille];
+		for (int i = 0; i < taille; i++) {
+			for (int j = 0; j < taille; j++) {
+				
+			
+					copie[j][taille-i-1]= grille.get(i).get(j).getVal();
+						
+					}
+					
+				}
+			
+		for (int i = 0; i < taille; i++) {
+			for (int j = 0; j < taille; j++) {
+				
+			
+					grille.get(i).get(j).setVal(copie[i][j]);
+						
+					}
+					
+				}
+			}
+	
 
 }

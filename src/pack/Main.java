@@ -12,8 +12,10 @@ public class Main {
 	public static void main(String[]args){
 		Jeu2048 jeu = new Jeu2048(4,true);
 		
-		
 		char b = oui ;
+		
+		jeu.afficheGrille();
+
 		while(b== oui || b==Oui){
 			jeu.afficheGrille();
 			while(jeu.perdu()==false){
