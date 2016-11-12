@@ -38,11 +38,13 @@ public class Jeu2048{
 	/*Affichage de la Grille*/
 	void afficheGrille(){
 		for(int i=0;i<taille;i++){
+			System.out.print("| ");
 			for(int j=0;j<taille;j++){
-				System.out.print(grille.get(i).get(j).getVal()+"\t");
+				System.out.print(grille.get(i).get(j).getVal() + " | ");
 			}
 			System.out.println("");
 		}
+		System.out.println("");
 	}
 	
 
