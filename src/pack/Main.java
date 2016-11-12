@@ -10,21 +10,21 @@ public class Main {
 	
 	/*Execution du jeu*/
 	public static void main(String[]args){
-		Jeu2048 jeu = new Jeu2048(4,true);
+		Grille grille = new Grille(4,true);
 		
 		char b = oui ;
 		
 		
 
 		while(b== oui || b==Oui){
-			jeu.afficheGrille();
-			while(jeu.perdu()==false){
+			grille.afficheGrille();
+			while(grille.perdu()==false){
 	
 				try{
 					InputStreamReader saisie = new InputStreamReader(System.in);
 					char a =  (char) saisie.read();
-					jeu.action(a);
-					jeu.afficheGrille();
+					grille.action(a);
+					grille.afficheGrille();
 				}catch(Exception e){
 					System.out.println("Saisie incorrecte ! Recommencez : ");
 				}
@@ -35,7 +35,7 @@ public class Main {
 					InputStreamReader choix = new InputStreamReader(System.in);
 					b =  (char) choix.read();
 					if(b==Oui || b==oui){
-						jeu.reset(true);
+						grille.reset(true);
 					}
 				}
 				catch(Exception e){

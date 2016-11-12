@@ -1,13 +1,10 @@
 /*fab*/
 package pack;
-
-
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
 
 
-public class Jeu2048{	
+public class Grille{	
 	public static final char up ='z';
 	public static final char down ='s';
 	public static final char right ='d';
@@ -19,7 +16,7 @@ public class Jeu2048{
 	private boolean Premier2048;
 	
 	/*Condtructeur*/
-	Jeu2048(int t, boolean First2048){
+	Grille(int t, boolean First2048){
 		this.taille = t;
 		this.Premier2048 = First2048;
 		grille = new ArrayList<ArrayList<Case>>();
