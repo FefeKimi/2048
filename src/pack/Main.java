@@ -11,11 +11,7 @@ public class Main {
 	/*Execution du jeu*/
 	public static void main(String[]args){
 		Grille grille = new Grille(4,true);
-		
 		char b = oui ;
-		
-		
-
 		while(b== oui || b==Oui){
 			grille.afficheGrille();
 			while(grille.perdu()==false){
