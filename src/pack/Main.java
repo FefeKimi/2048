@@ -14,7 +14,7 @@ public class Main {
 		
 		char b = oui ;
 		
-		jeu.afficheGrille();
+		
 
 		while(b== oui || b==Oui){
 			jeu.afficheGrille();

@@ -77,211 +77,248 @@ public class Jeu2048{
 			System.out.println("Vous avez gagné mais vous pouvez continuer!");
 		}
 	}
+	public int getGrille(int i, int j){
+		return grille.get(i).get(j).getVal();
+	}
+	
+	public void setGrille(int i, int j, int val){
+		 this.grille.get(i).get(j).setVal(val);
+	}
+	public void deplacement(int i, int j){
+		for(int k= taille-1; k>j; k--){
+			if(getGrille(i,k)==0){
+				this.setGrille(i, k, getGrille(i, j));
+				this.setGrille(i, j, 0);
+				break; 
+			}	
+		}
+	}
+	
 
 	/*deplacement haut/bas/gauche/droite*/
 	public void haut(){
-		
-		//Tableau de comparaison
-		boolean egal=true;
-		int copie[][]= new int[taille][taille];
-		for(int i=0;i<taille;i++){
-			for(int j=0;j<taille;j++){
-				copie[i][j]= grille.get(i).get(j).getVal();
-				
-			}
-			
+		for (int i = 0; i < 1; i++) {
+			rotation();
 		}
-	
-		//recherche de la  case vide située le plus haut possible
-		for (int j = 0; j < taille; j++) {
-
-			for (int i = 0; i <taille ; i++) {
-				
-					for(int k=0; k<i; k++){
-						if(grille.get(k).get(j).getVal()==0){
-							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
-							grille.get(i).get(j).setVal(0);
-							break;
-						}
-					}
-			}
+		droite();
+		for (int i = 0; i < 3; i++) {
+			rotation();
 		}
-		//fusion des cases
-		for (int j = 0; j < taille; j++) {
-
-			for (int i = 1; i <taille ; i++) {
-				if(grille.get(i-1).get(j).getVal()==grille.get(i).get(j).getVal()){
-					grille.get(i-1).get(j).setVal(grille.get(i-1).get(j).getVal()*2);
-					grille.get(i).get(j).setVal(0);
-				}
-			}
-		}
-		//recherche de la  case vide située le plus haut possible
-		for (int j = 0; j < taille; j++) {
-
-			for (int i = 0; i <taille ; i++) {
-				
-					for(int k=0; k<i; k++){
-						if(grille.get(k).get(j).getVal()==0){
-							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
-							grille.get(i).get(j).setVal(0);
-							break;
-						}
-					}
-			}
-		}
-		
-		//vérifie s'il y a eu un déplacement des cases
-		for (int i = 0; i < taille; i++) {
-
-			for (int j = taille-1; j >=0 ; j--) {
-				if(grille.get(i).get(j).getVal()!=copie[i][j]){
-					egal=false;
-				}
-			}
-			
-		}
-		
-		if(!egal){
-			ajouterSiCaseVide();
-		}
+//		//Tableau de comparaison
+//		boolean egal=true;
+//		int copie[][]= new int[taille][taille];
+//		for(int i=0;i<taille;i++){
+//			for(int j=0;j<taille;j++){
+//				copie[i][j]= grille.get(i).get(j).getVal();
+//				
+//			}
+//			
+//		}
+//	
+//		//recherche de la  case vide située le plus haut possible
+//		for (int j = 0; j < taille; j++) {
+//
+//			for (int i = 0; i <taille ; i++) {
+//				
+//					for(int k=0; k<i; k++){
+//						if(grille.get(k).get(j).getVal()==0){
+//							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
+//							grille.get(i).get(j).setVal(0);
+//							break;
+//						}
+//					}
+//			}
+//		}
+//		//fusion des cases
+//		for (int j = 0; j < taille; j++) {
+//
+//			for (int i = 1; i <taille ; i++) {
+//				if(grille.get(i-1).get(j).getVal()==grille.get(i).get(j).getVal()){
+//					grille.get(i-1).get(j).setVal(grille.get(i-1).get(j).getVal()*2);
+//					grille.get(i).get(j).setVal(0);
+//				}
+//			}
+//		}
+//		//recherche de la  case vide située le plus haut possible
+//		for (int j = 0; j < taille; j++) {
+//
+//			for (int i = 0; i <taille ; i++) {
+//				
+//					for(int k=0; k<i; k++){
+//						if(grille.get(k).get(j).getVal()==0){
+//							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
+//							grille.get(i).get(j).setVal(0);
+//							break;
+//						}
+//					}
+//			}
+//		}
+//		
+//		//vérifie s'il y a eu un déplacement des cases
+//		for (int i = 0; i < taille; i++) {
+//
+//			for (int j = taille-1; j >=0 ; j--) {
+//				if(grille.get(i).get(j).getVal()!=copie[i][j]){
+//					egal=false;
+//				}
+//			}
+//			
+//		}
+//		
+//		if(!egal){
+//			ajouterSiCaseVide();
+//		}
 		
 	}
 	
 	public void bas(){
-		//Tableau de comparaison
-		boolean egal=true;
-		int copie[][]= new int[taille][taille];
-		for(int i=0;i<taille;i++){
-			for(int j=0;j<taille;j++){
-				copie[i][j]= grille.get(i).get(j).getVal();
-				
-			}
-			
+		for (int i = 0; i < 3; i++) {
+			rotation();
 		}
-	
-		//recherche la case vide située le plus pas possible
-		for (int j = 0; j < taille; j++) {
-			
-			for (int i = taille-1; i >= 0 ; i--) {
-				
-					for(int k=taille-1; k>i; k--){
-						if(grille.get(k).get(j).getVal()==0){
-							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
-							grille.get(i).get(j).setVal(0);
-							break;
-						}
-					}
-			}
-			
+		droite();
+		for (int i = 0; i < 1; i++) {
+			rotation();
 		}
-		//fusion des cases
-		for (int j = 0; j < taille; j++) {
-
-			for (int i = taille-2; i >=0 ; i--) {
-				if(grille.get(i).get(j).getVal()==grille.get(i+1).get(j).getVal()){
-					grille.get(i+1).get(j).setVal(grille.get(i).get(j).getVal()*2);
-					grille.get(i).get(j).setVal(0);
-				}
-			}
-		}
-		//recherche la case vide située le plus pas possible
-		for (int j = 0; j < taille; j++) {
-
-			for (int i = taille-1; i >=0 ; i--) {
-				
-					for(int k=taille-1; k>i; k--){
-						if(grille.get(k).get(j).getVal()==0){
-							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
-							grille.get(i).get(j).setVal(0);
-							break;
-						}
-					}
-			}
-			
-		}
-		//vérifie s'il y a eu un déplacement des cases
-		for (int i = 0; i < taille; i++) {
-
-			for (int j = taille-1; j >=0 ; j--) {
-				if(grille.get(i).get(j).getVal()!=copie[i][j]){
-					egal=false;
-				}
-			}
-			
-		}
-		
-		if(!egal){
-			ajouterSiCaseVide();
-		}
+//		//Tableau de comparaison
+//		boolean egal=true;
+//		int copie[][]= new int[taille][taille];
+//		for(int i=0;i<taille;i++){
+//			for(int j=0;j<taille;j++){
+//				copie[i][j]= grille.get(i).get(j).getVal();
+//				
+//			}
+//			
+//		}
+//	
+//		//recherche la case vide située le plus pas possible
+//		for (int j = 0; j < taille; j++) {
+//			
+//			for (int i = taille-1; i >= 0 ; i--) {
+//				
+//					for(int k=taille-1; k>i; k--){
+//						if(grille.get(k).get(j).getVal()==0){
+//							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
+//							grille.get(i).get(j).setVal(0);
+//							break;
+//						}
+//					}
+//			}
+//			
+//		}
+//		//fusion des cases
+//		for (int j = 0; j < taille; j++) {
+//
+//			for (int i = taille-2; i >=0 ; i--) {
+//				if(grille.get(i).get(j).getVal()==grille.get(i+1).get(j).getVal()){
+//					grille.get(i+1).get(j).setVal(grille.get(i).get(j).getVal()*2);
+//					grille.get(i).get(j).setVal(0);
+//				}
+//			}
+//		}
+//		//recherche la case vide située le plus pas possible
+//		for (int j = 0; j < taille; j++) {
+//
+//			for (int i = taille-1; i >=0 ; i--) {
+//				
+//					for(int k=taille-1; k>i; k--){
+//						if(grille.get(k).get(j).getVal()==0){
+//							grille.get(k).get(j).setVal(grille.get(i).get(j).getVal());
+//							grille.get(i).get(j).setVal(0);
+//							break;
+//						}
+//					}
+//			}
+//			
+//		}
+//		//vérifie s'il y a eu un déplacement des cases
+//		for (int i = 0; i < taille; i++) {
+//
+//			for (int j = taille-1; j >=0 ; j--) {
+//				if(grille.get(i).get(j).getVal()!=copie[i][j]){
+//					egal=false;
+//				}
+//			}
+//			
+//		}
+//		
+//		if(!egal){
+//			ajouterSiCaseVide();
+//		}
 	}
 	
 	public void gauche(){
-		//Tableau de comparaison
-		boolean egal=true;
-		int copie[][]= new int[taille][taille];
-		
-		for(int i=0;i<taille;i++){
-			for(int j=0;j<taille;j++){
-				copie[i][j]= grille.get(i).get(j).getVal();
-				
-			}
-			
+		for (int i = 0; i < 2; i++) {
+			rotation();
 		}
-		
-		//cherche la case vide la plus à gauche possible
-		for (int i = 0; i < taille; i++) {
-
-			for (int j = 0; j <taille ; j++) {
-				
-					for(int k=0; k<j; k++){
-						if(grille.get(i).get(k).getVal()==0){
-							grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
-							grille.get(i).get(j).setVal(0);
-							break;
-						}
-					}
-			}
+		droite();
+		for (int i = 0; i < 2; i++) {
+			rotation();
 		}
-		//fusion des cases
-		for (int i = 0; i < taille; i++) {
-
-			for (int j = 1; j <taille ; j++) {
-				if(grille.get(i).get(j-1).getVal()==grille.get(i).get(j).getVal()){
-					grille.get(i).get(j-1).setVal(grille.get(i).get(j-1).getVal()*2);
-					grille.get(i).get(j).setVal(0);
-				}
-			}
-		}
-		//cherche la case vide la plus à gauche possible
-		for (int i = 0; i < taille; i++) {
-
-			for (int j = 0; j <taille ; j++) {
-				
-					for(int k=0; k<j; k++){
-						if(grille.get(i).get(k).getVal()==0){
-							grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
-							grille.get(i).get(j).setVal(0);
-							break;
-						}
-					}
-			}
-		}
-		
-		//vérifie s'il y a eu un déplacement des cases
-		for (int i = 0; i < taille; i++) {
-
-			for (int j = taille-1; j >=0 ; j--) {
-				if(grille.get(i).get(j).getVal()!=copie[i][j]){
-					egal=false;
-				}
-			}
-			
-		}
-	
-		if(!egal){
-			ajouterSiCaseVide();
-		}
+//		Tableau de comparaison
+//		boolean egal=true;
+//		int copie[][]= new int[taille][taille];
+//		
+//		for(int i=0;i<taille;i++){
+//			for(int j=0;j<taille;j++){
+//				copie[i][j]= grille.get(i).get(j).getVal();
+//				
+//			}
+//			
+//		}
+//		
+//		//cherche la case vide la plus à gauche possible
+//		for (int i = 0; i < taille; i++) {
+//
+//			for (int j = 0; j <taille ; j++) {
+//				
+//					for(int k=0; k<j; k++){
+//						if(grille.get(i).get(k).getVal()==0){
+//							grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
+//							grille.get(i).get(j).setVal(0);
+//							break;
+//						}
+//					}
+//			}
+//		}
+//		//fusion des cases
+//		for (int i = 0; i < taille; i++) {
+//
+//			for (int j = 1; j <taille ; j++) {
+//				if(grille.get(i).get(j-1).getVal()==grille.get(i).get(j).getVal()){
+//					grille.get(i).get(j-1).setVal(grille.get(i).get(j-1).getVal()*2);
+//					grille.get(i).get(j).setVal(0);
+//				}
+//			}
+//		}
+//		//cherche la case vide la plus à gauche possible
+//		for (int i = 0; i < taille; i++) {
+//
+//			for (int j = 0; j <taille ; j++) {
+//				
+//					for(int k=0; k<j; k++){
+//						if(grille.get(i).get(k).getVal()==0){
+//							grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
+//							grille.get(i).get(j).setVal(0);
+//							break;
+//						}
+//					}
+//			}
+//		}
+//		
+//		//vérifie s'il y a eu un déplacement des cases
+//		for (int i = 0; i < taille; i++) {
+//
+//			for (int j = taille-1; j >=0 ; j--) {
+//				if(grille.get(i).get(j).getVal()!=copie[i][j]){
+//					egal=false;
+//				}
+//			}
+//			
+//		}
+//	
+//		if(!egal){
+//			ajouterSiCaseVide();
+//		}
 	}
 	
 	
@@ -300,13 +337,14 @@ public class Jeu2048{
 		//cherche la case vide située la plus à droite possible
 		for (int i = 0; i < taille; i++) {
 			for (int j = taille-2; j >=0 ; j--) {
-				for(int k= taille-2; k>j; k--){
-					if(grille.get(i).get(k).getVal()==0){
-						grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
-						grille.get(i).get(j).setVal(0);
-						break;
-					}
-				}
+				deplacement(i,j);
+//				for(int k= taille-1; k>j; k--){
+//					if(grille.get(i).get(k).getVal()==0){
+//						grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
+//						grille.get(i).get(j).setVal(0);
+//						break;
+//					}
+//				}
 			}
 		}
 		//fusion des cases	
@@ -321,13 +359,14 @@ public class Jeu2048{
 		//cherche la case vide située la plus à droite possible
 		for (int i = 0; i < taille; i++) {
 			for (int j = taille-2; j >=0 ; j--) {
-				for(int k= taille-1; k>j; k--){
-					if(grille.get(i).get(k).getVal()==0){
-						grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
-						grille.get(i).get(j).setVal(0);
-						break;
-					}
-				}
+				deplacement(i,j);
+//				for(int k= taille-1; k>j; k--){
+//					if(grille.get(i).get(k).getVal()==0){
+//						grille.get(i).get(k).setVal(grille.get(i).get(j).getVal());
+//						grille.get(i).get(j).setVal(0);
+//						break;
+//					}
+//				}
 			}
 		}
 		
