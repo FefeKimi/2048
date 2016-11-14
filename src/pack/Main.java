@@ -19,7 +19,7 @@ public class Main {
 				try{
 					InputStreamReader saisie = new InputStreamReader(System.in);
 					char a =  (char) saisie.read();
-					grille.action(a);
+	grille.action(a);
 					grille.afficheGrille();
 				}catch(Exception e){
 					System.out.println("Saisie incorrecte ! Recommencez : ");
